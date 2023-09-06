@@ -1,0 +1,13 @@
+= Spring REST Docs Test
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+[[Test-API]]
+== 0. Test API
+
+== RestDocsTestController
+operation::rest-docs-test-controller-test/rest-docs-test[snippets='http-request,http-response']
