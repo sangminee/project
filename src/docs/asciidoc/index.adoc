@@ -11,3 +11,16 @@
 
 == RestDocsTestController
 operation::rest-docs-test-controller-test/rest-docs-test[snippets='http-request,http-response']
+
+[[User-API]]
+== 1. User API
+
+=== 회원 가입
+
+==== HTTP request
+include::{snippets}/user-create/http-request.adoc[]
+==== HTTP response
+include::{snippets}/user-create/http-response.adoc[]
+
+[[Post-API]]
+== 2. Post API

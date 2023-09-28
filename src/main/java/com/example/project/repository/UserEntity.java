@@ -1,12 +1,20 @@
 package com.example.project.repository;
 
 import com.example.project.model.UserStatus;
+import com.example.project.model.dto.UserCreateDto;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.util.UUID;
 
 @Getter
 @Entity
 @Table(name = "users")
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserEntity {
 
     @Id
@@ -32,4 +40,22 @@ public class UserEntity {
     @Column(name = "last_login_at")
     private Long lastLoginAt;
 
+    @Builder
+    public UserEntity(String email, String nickname, String address, String certificationCode, UserStatus status) {
+        this.email = email;
+        this.nickname = nickname;
+        this.address = address;
+        this.certificationCode = certificationCode;
+        this.status = status;
+    }
+
+    public static UserEntity of(UserCreateDto userCreateDto){
+        return UserEntity.builder()
+                .email(userCreateDto.getEmail())
+                .nickname(userCreateDto.getNickname())
+                .address(userCreateDto.getAddress())
+                .status(UserStatus.PENDING)
+                .certificationCode(UUID.randomUUID().toString())
+                .build();
+    }
 }
