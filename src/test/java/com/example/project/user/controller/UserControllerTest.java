@@ -1,7 +1,7 @@
-package com.example.project.controller;
+package com.example.project.user.controller;
 
-import com.example.project.model.dto.UserCreateDto;
-import com.example.project.repository.UserRepository;
+import com.example.project.user.domain.UserCreateDto;
+import com.example.project.user.infrastructure.UserRepository;
 import com.example.project.utils.AbstractRestDocsTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;

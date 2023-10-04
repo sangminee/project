@@ -1,5 +1,6 @@
-package com.example.project.repository;
+package com.example.project.post.infrastructure;
 
+import com.example.project.user.infrastructure.UserEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 

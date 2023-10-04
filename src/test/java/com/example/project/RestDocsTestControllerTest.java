@@ -1,5 +1,6 @@
 package com.example.project;
 
+import com.example.project.common.controller.RestDocsTestController;
 import com.example.project.utils.AbstractRestDocsTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

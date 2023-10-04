@@ -1,4 +1,4 @@
-package com.example.project.model;
+package com.example.project.user.domain;
 
 public enum UserStatus {
     PENDING, INACTIVE, ACTIVE

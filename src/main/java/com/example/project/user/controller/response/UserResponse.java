@@ -1,7 +1,7 @@
-package com.example.project.model.dto.response;
+package com.example.project.user.controller.response;
 
-import com.example.project.model.UserStatus;
-import com.example.project.repository.UserEntity;
+import com.example.project.user.domain.UserStatus;
+import com.example.project.user.infrastructure.UserEntity;
 import lombok.Builder;
 import lombok.Getter;
 

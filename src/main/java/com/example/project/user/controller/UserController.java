@@ -1,9 +1,9 @@
-package com.example.project.controller;
+package com.example.project.user.controller;
 
-import com.example.project.model.dto.UserCreateDto;
-import com.example.project.model.dto.response.UserResponse;
-import com.example.project.repository.UserEntity;
-import com.example.project.service.UserService;
+import com.example.project.user.domain.UserCreateDto;
+import com.example.project.user.controller.response.UserResponse;
+import com.example.project.user.infrastructure.UserEntity;
+import com.example.project.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

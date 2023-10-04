@@ -1,7 +1,7 @@
-package com.example.project.repository;
+package com.example.project.user.infrastructure;
 
-import com.example.project.model.UserStatus;
-import com.example.project.model.dto.UserCreateDto;
+import com.example.project.user.domain.UserStatus;
+import com.example.project.user.domain.UserCreateDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
