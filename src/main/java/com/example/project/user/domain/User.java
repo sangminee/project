@@ -27,11 +27,11 @@ public class User {
         this.lastLoginAt = lastLoginAt;
     }
 
-    public static User from(UserCreateDto userCreateDto){ // User 객체를 만들어 주는
+    public static User from(UserCreate userCreate){ // User 객체를 만들어 주는
         return User.builder()
-                .email(userCreateDto.getEmail())
-                .nickname(userCreateDto.getNickname())
-                .address(userCreateDto.getAddress())
+                .email(userCreate.getEmail())
+                .nickname(userCreate.getNickname())
+                .address(userCreate.getAddress())
                 .status(UserStatus.PENDING)
                 .certificationCode(UUID.randomUUID().toString())
                 .build();

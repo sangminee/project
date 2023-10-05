@@ -14,8 +14,8 @@ class UserResponseTest {
         // given
         User user = User.builder()
                 .id(1L)
-                .email("test111@gmail.com")
-                .nickname("sangmin")
+                .email("test123@gmail.com")
+                .nickname("test123")
                 .address("Seoul")
                 .status(UserStatus.ACTIVE)
                 .lastLoginAt(100L)
@@ -27,7 +27,7 @@ class UserResponseTest {
 
         // then
         assertThat(userResponse.getId()).isEqualTo(1);
-        assertThat(userResponse.getEmail()).isEqualTo("test111@gmail.com");
+        assertThat(userResponse.getEmail()).isEqualTo("test123@gmail.com");
         assertThat(userResponse.getStatus()).isEqualTo(UserStatus.ACTIVE);
         assertThat(userResponse.getLastLoginAt()).isEqualTo(100L);
     }

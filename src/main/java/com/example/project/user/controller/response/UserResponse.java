@@ -24,4 +24,5 @@ public class UserResponse {
                 .lastLoginAt(user.getLastLoginAt())
                 .build();
     }
+
 }
