@@ -1,12 +1,10 @@
 package com.example.project.mock;
 
 import com.example.project.user.domain.User;
+import com.example.project.user.domain.UserStatus;
 import com.example.project.user.service.port.UserRepository;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class FakeUserRepository implements UserRepository {
@@ -33,5 +31,10 @@ public class FakeUserRepository implements UserRepository {
             data.add(user);
             return user;
         }
+    }
+
+    @Override
+    public Optional<User> findByIdAndStatus(long id, UserStatus active) {
+        return data.stream().filter(item -> item.getId().equals(id)).findAny();
     }
 }

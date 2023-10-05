@@ -12,6 +12,7 @@ public class TestContainer {
     public final UserRepository userRepository;
     public final UserService userService;
     public final UserCreateController userCreateController;
+    public final UserController userController;
 
     @Builder
     public TestContainer() {
@@ -20,6 +21,9 @@ public class TestContainer {
                 .userRepository(userRepository)
                 .build();
         this.userCreateController = UserCreateController.builder()
+                .userService(userService)
+                .build();
+        this.userController = UserController.builder()
                 .userService(userService)
                 .build();
     }

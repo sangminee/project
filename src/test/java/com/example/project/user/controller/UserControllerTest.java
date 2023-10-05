@@ -1,70 +1,41 @@
 package com.example.project.user.controller;
 
-import com.example.project.user.domain.UserCreateDto;
-import com.example.project.user.infrastructure.UserRepository;
-import com.example.project.utils.AbstractRestDocsTest;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.DisplayName;
+import com.example.project.mock.TestContainer;
+import com.example.project.user.controller.response.UserResponse;
+import com.example.project.user.domain.User;
+import com.example.project.user.domain.UserStatus;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-@AutoConfigureTestDatabase
-class UserControllerTest extends AbstractRestDocsTest {
+class UserControllerTest{
 
-    @Autowired
-    private UserRepository userRepository;
-
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
-    @DisplayName("사용자는 회원가입을 할 수 있다")
     @Test
-    void user_create() throws Exception{
+    void 사용자는_특정_유저의_개인정보가_없는_정보를_얻을_수_있다(){
         // given
-        UserCreateDto userCreateDto = UserCreateDto.builder()
-                .email("test111@gmail.com")
-                .nickname("sangmin")
+        TestContainer testContainer = new TestContainer();
+
+        User user = User.builder()
+                .id(1L)
+                .email("test123@gmail.com")
+                .nickname("test123")
                 .address("Seoul")
+                .certificationCode("aaa-aaa-aaa-aaa")
+                .status(UserStatus.ACTIVE)
                 .build();
+        testContainer.userRepository.save(user);
 
         // when
-        // then
-        mockMvc.perform(
-                        post("/api/users")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(userCreateDto)))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id").isNumber())
-                .andExpect(jsonPath("$.email").value("test111@gmail.com"))
-                .andExpect(jsonPath("$.nickname").value("sangmin"))
-                .andDo(// rest docs 문서 작성 시작
-                        document("user-create", // 문서 조각 디렉토리 명
-                                requestFields(
-                                        fieldWithPath("email").description("이메일"),
-                                        fieldWithPath("nickname").description("닉네임"),
-                                        fieldWithPath("address").description("주소")
-                                ),
-                                responseFields( // response 필드 정보 입력
-                                        fieldWithPath("id").description("ID"),
-                                        fieldWithPath("email").description("email"),
-                                        fieldWithPath("nickname").description("nickname"),
-                                        fieldWithPath("status").description("유저 상태"),
-                                        fieldWithPath("lastLoginAt").description("로그인 횟수")
-                                )
-                        )
-                );
+        ResponseEntity<UserResponse> result = testContainer.userController.getById(1L);
 
+        // then
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(200));
+        assertThat(result.getBody()).isNotNull();
+        assertThat(result.getBody().getId()).isEqualTo(1L);
+        assertThat(result.getBody().getNickname()).isEqualTo("test123");
+        assertThat(result.getBody().getStatus()).isEqualTo(UserStatus.ACTIVE);
     }
 
 }

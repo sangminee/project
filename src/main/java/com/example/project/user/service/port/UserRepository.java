@@ -9,5 +9,6 @@ public interface UserRepository {
 
     User save(User user);
 
-//    Optional<User> findByIdAndStatus(long id, UserStatus active);
+    Optional<User> findByIdAndStatus(long id, UserStatus active);
+
 }
