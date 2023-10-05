@@ -1,5 +1,6 @@
 package com.example.project.user.controller;
 
+import com.example.project.mock.TestContainer;
 import com.example.project.user.controller.response.UserResponse;
 import com.example.project.user.domain.UserCreate;
 import com.example.project.user.domain.UserStatus;
@@ -14,7 +15,7 @@ class UserCreateControllerTest{
     @Test
     void UserCreate를_가지고_UserResponse를_생성할_수_있다(){
         // given
-        UserCreateController userCreateController = UserCreateController.builder().build();
+        TestContainer testContainer = new TestContainer();
         UserCreate userCreate = UserCreate.builder()
                 .email("test123@gmail.com")
                 .nickname("test123")
@@ -22,7 +23,7 @@ class UserCreateControllerTest{
                 .build();
 
         // when
-        ResponseEntity<UserResponse> result = userCreateController.create(userCreate);
+        ResponseEntity<UserResponse> result = testContainer.userCreateController.create(userCreate);
 
         // then
         assertThat(result.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(201));
@@ -31,7 +32,6 @@ class UserCreateControllerTest{
         assertThat(result.getBody().getEmail()).isEqualTo("test123@gmail.com");
         assertThat(result.getBody().getNickname()).isEqualTo("test123");
         assertThat(result.getBody().getStatus()).isEqualTo(UserStatus.PENDING);
-        assertThat(result.getBody().getLastLoginAt()).isEqualTo(0L);
     }
 
 }

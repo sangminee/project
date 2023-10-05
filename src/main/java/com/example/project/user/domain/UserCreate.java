@@ -6,14 +6,14 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class UserCreateDto {
+public class UserCreate {
 
     private final String email;
     private final String nickname;
     private final String address;
 
     @Builder
-    public UserCreateDto(
+    public UserCreate(
         @JsonProperty("email") String email,
         @JsonProperty("nickname") String nickname,
         @JsonProperty("address") String address) {

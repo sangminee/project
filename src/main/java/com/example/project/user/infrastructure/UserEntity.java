@@ -2,14 +2,11 @@ package com.example.project.user.infrastructure;
 
 import com.example.project.user.domain.User;
 import com.example.project.user.domain.UserStatus;
-import com.example.project.user.domain.UserCreateDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.UUID;
 
 @Getter
 @Entity
