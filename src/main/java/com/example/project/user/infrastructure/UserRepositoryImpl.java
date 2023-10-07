@@ -24,4 +24,9 @@ public class UserRepositoryImpl implements UserRepository {
         return userJpaRepository.findByIdAndStatus(id, active).map(UserEntity::toModel);
     }
 
+    @Override
+    public Optional<User> findByEmailAndStatus(String email, UserStatus active) {
+        return userJpaRepository.findByEmailAndStatus(email, active).map(UserEntity::toModel);
+    }
+
 }

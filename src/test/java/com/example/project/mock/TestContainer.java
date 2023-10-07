@@ -7,6 +7,7 @@ import com.example.project.user.service.UserServiceImpl;
 import com.example.project.user.service.port.UserRepository;
 import lombok.Builder;
 
+@Builder
 public class TestContainer {
 
     public final UserRepository userRepository;
@@ -14,7 +15,6 @@ public class TestContainer {
     public final UserCreateController userCreateController;
     public final UserController userController;
 
-    @Builder
     public TestContainer() {
         this.userRepository = new FakeUserRepository();
         this.userService = UserServiceImpl.builder()

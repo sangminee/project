@@ -37,4 +37,16 @@ public class User {
                 .build();
     }
 
+    public User update(UserUpdate userUpdate) {
+        return User.builder()
+                .id(id)
+                .email(email)
+                .nickname(userUpdate.getNickname())
+                .address(userUpdate.getAddress())
+                .status(status)
+                .certificationCode(certificationCode)
+                .lastLoginAt(lastLoginAt)
+                .build();
+    }
+
 }
